@@ -1,0 +1,10 @@
+.globl lab03b
+
+lab03b:
+	// word UIN = 31;
+	MOV X1, #10
+loop:
+	CBZ X1, finish
+	SUB X2, X2, #1
+finish:
+	BR X30

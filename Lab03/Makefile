@@ -23,5 +23,11 @@ test.o: test.S
 # Compile for best debug view (lowest optimization)
 	$(CC) $(FLAGS) -c $^ -o $@
 
-$(TARGET): main.o test.o
-	$(LD) main.o test.o -o $@
+lab03b.o: lab03b.S
+	$(CC) $(FLAGS) -c $^ -o $@
+
+lab03c.o: lab03c.S
+	$(CC) $(FLAGS) -c $^ -o $@
+
+$(TARGET): main.o test.o lab03b.o lab03c.o
+	$(LD) main.o test.o lab03b.o lab03c.o -o $@
