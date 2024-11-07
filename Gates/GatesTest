@@ -1,0 +1,70 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001c84f202b80 .scope module, "GatesTest" "GatesTest" 2 1;
+ .timescale 0 0;
+v000001c84f232f00_0 .var "in", 0 1;
+v000001c84f233860_0 .net "out", 0 2, L_000001c84f232e60;  1 drivers
+S_000001c84f202d10 .scope module, "DUT" "Gates" 2 9, 3 1 0, S_000001c84f202b80;
+ .timescale 0 0;
+    .port_info 0 /INPUT 2 "in";
+    .port_info 1 /OUTPUT 3 "out";
+L_000001c84f234e50 .functor AND 1, L_000001c84f232fa0, L_000001c84f233540, C4<1>, C4<1>;
+L_000001c84f348420 .functor OR 1, L_000001c84f233680, L_000001c84f232dc0, C4<0>, C4<0>;
+L_000001c84f279f30 .functor XOR 1, L_000001c84f233900, L_000001c84f233400, C4<0>, C4<0>;
+v000001c84f349e70_0 .net *"_ivl_0", 0 0, L_000001c84f234e50;  1 drivers
+v000001c84f203300_0 .net *"_ivl_11", 0 0, L_000001c84f232dc0;  1 drivers
+v000001c84f202ea0_0 .net *"_ivl_12", 0 0, L_000001c84f279f30;  1 drivers
+v000001c84f202f40_0 .net *"_ivl_16", 0 0, L_000001c84f233900;  1 drivers
+v000001c84f202fe0_0 .net *"_ivl_18", 0 0, L_000001c84f233400;  1 drivers
+v000001c84f279c10_0 .net *"_ivl_3", 0 0, L_000001c84f232fa0;  1 drivers
+v000001c84f279cb0_0 .net *"_ivl_5", 0 0, L_000001c84f233540;  1 drivers
+v000001c84f279d50_0 .net *"_ivl_6", 0 0, L_000001c84f348420;  1 drivers
+v000001c84f279df0_0 .net *"_ivl_9", 0 0, L_000001c84f233680;  1 drivers
+v000001c84f279e90_0 .net "in", 0 1, v000001c84f232f00_0;  1 drivers
+v000001c84f233cc0_0 .net "out", 0 2, L_000001c84f232e60;  alias, 1 drivers
+L_000001c84f232fa0 .part v000001c84f232f00_0, 1, 1;
+L_000001c84f233540 .part v000001c84f232f00_0, 0, 1;
+L_000001c84f233680 .part v000001c84f232f00_0, 1, 1;
+L_000001c84f232dc0 .part v000001c84f232f00_0, 0, 1;
+L_000001c84f232e60 .concat8 [ 1 1 1 0], L_000001c84f279f30, L_000001c84f348420, L_000001c84f234e50;
+L_000001c84f233900 .part v000001c84f232f00_0, 1, 1;
+L_000001c84f233400 .part v000001c84f232f00_0, 0, 1;
+    .scope S_000001c84f202b80;
+T_0 ;
+    %vpi_call 2 5 "$dumpfile", "GatesTest.vcd" {0 0 0};
+    %vpi_call 2 6 "$dumpvars", 32'sb00000000000000000000000000000000, S_000001c84f202b80 {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_000001c84f202b80;
+T_1 ;
+    %delay 0, 0;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v000001c84f232f00_0, 0, 2;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 2;
+    %store/vec4 v000001c84f232f00_0, 0, 2;
+    %delay 10, 0;
+    %pushi/vec4 2, 0, 2;
+    %store/vec4 v000001c84f232f00_0, 0, 2;
+    %delay 10, 0;
+    %pushi/vec4 3, 0, 2;
+    %store/vec4 v000001c84f232f00_0, 0, 2;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v000001c84f232f00_0, 0, 2;
+    %vpi_call 2 16 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "GatesTest.v";
+    "Gates.v";
