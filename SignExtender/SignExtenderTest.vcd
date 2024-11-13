@@ -1,5 +1,5 @@
 $date
-	Mon Nov 04 23:36:24 2024
+	Thu Nov  7 17:30:12 2024
 $end
 $version
 	Icarus Verilog
@@ -29,6 +29,9 @@ $var reg 2 - testType [1:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
 #0
 $dumpvars
 bx -
