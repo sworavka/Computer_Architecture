@@ -1,0 +1,73 @@
+$date
+	Wed Nov 13 20:19:14 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module NextPClogicTest $end
+$var wire 64 ! NextPC [63:0] $end
+$var reg 1 " ALUZero $end
+$var reg 1 # Branch $end
+$var reg 64 $ CurrentPC [63:0] $end
+$var reg 64 % SignExtImm64 [63:0] $end
+$var reg 1 & Uncondbranch $end
+$scope module uut $end
+$var wire 1 " ALUZero $end
+$var wire 1 # Branch $end
+$var wire 64 ' CurrentPC [63:0] $end
+$var wire 64 ( SignExtImm64 [63:0] $end
+$var wire 1 & Uncondbranch $end
+$var reg 64 ) NextPC [63:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx )
+b0 (
+b0 '
+0&
+b0 %
+b0 $
+0#
+0"
+bx !
+$end
+#2000
+b100 !
+b100 )
+#10000
+b1000000000000 $
+b1000000000000 '
+#12000
+b1000000000100 !
+b1000000000100 )
+#15000
+1"
+1#
+b10 %
+b10 (
+#18000
+b1000000001000 !
+b1000000001000 )
+#20000
+1&
+0"
+0#
+b1 %
+b1 (
+#23000
+b1000000000100 !
+b1000000000100 )
+#25000
+0&
+1#
+b10 %
+b10 (
+#30000

@@ -3,70 +3,82 @@
 module NextPClogicTest;
 
     // Inputs
-    reg [63:0] currentPC;
-    reg [63:0] imm;
-    reg branchCond;
-    reg aluZero;
-    reg uncondBranch;
+    reg [63:0] CurrentPC;
+    reg [63:0] SignExtImm64;
+    reg Branch;
+    reg ALUZero;
+    reg Uncondbranch;
 
     // Outputs
-    wire [63:0] nextPC;
+    wire [63:0] NextPC;
 
     // Instantiate the Unit Under Test (UUT)
-    NextPC uut (
-        .currentPC(currentPC),
-        .imm(imm),
-        .branchCond(branchCond),
-        .aluZero(aluZero),
-        .uncondBranch(uncondBranch),
-        .nextPC(nextPC)
+    NextPClogic uut (
+        .CurrentPC(CurrentPC),
+        .SignExtImm64(SignExtImm64),
+        .Branch(Branch),
+        .ALUZero(ALUZero),
+        .Uncondbranch(Uncondbranch),
+        .NextPC(NextPC)
     );
 
     initial begin
         // Initialize Inputs
-        currentPC = 0;
-        imm = 0;
-        branchCond = 0;
-        aluZero = 0;
-        uncondBranch = 0;
+        CurrentPC = 0;
+        SignExtImm64 = 0;
+        Branch = 0;
+        ALUZero = 0;
+        Uncondbranch = 0;
         #10;
 
         // Test Case 1: Default next instruction
-        currentPC = 64'h1000;
-        imm = 64'h0;
-        branchCond = 0;
-        aluZero = 0;
-        uncondBranch = 0;
-        #1; // Wait for delay
-        if (nextPC !== 64'h1004) $display("Test Case 1 Failed: nextPC = %h", nextPC);
+        CurrentPC = 64'h1000;
+        SignExtImm64 = 64'h0;
+        Branch = 0;
+        ALUZero = 0;
+        Uncondbranch = 0;
+        #5; // Wait for delay to ensure processing
+        $display("CurrentPC: %h, SignExtImm64: %h, Branch: %h, ALUZero: %h, Uncondbranch: %h, NextPC: %h", CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch, NextPC);
+        if (NextPC !== 64'h1004) $display("Test Case 1 Failed: NextPC = %h", NextPC);
+        else $display("Test Case 1 Passed: NextPC = %h", NextPC);
         
         // Test Case 2: Conditional branch taken
-        currentPC = 64'h1000;
-        imm = 64'h2;
-        branchCond = 1;
-        aluZero = 1;
-        uncondBranch = 0;
-        #2; // Wait for delay
-        if (nextPC !== 64'h1008) $display("Test Case 2 Failed: nextPC = %h", nextPC);
-        
+        CurrentPC = 64'h1000;
+        SignExtImm64 = 64'h2;
+        Branch = 1;
+        ALUZero = 1;
+        Uncondbranch = 0;
+        #5; // Wait for delay to ensure processing
+        $display("CurrentPC: %h, SignExtImm64: %h, Branch: %h, ALUZero: %h, Uncondbranch: %h, NextPC: %h", CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch, NextPC);
+        if (NextPC !== 64'h1008) $display("Test Case 2 Failed: NextPC = %h", NextPC);
+        else $display("Test Case 2 Passed: NextPC = %h", NextPC);
+
         // Test Case 3: Unconditional branch
-        currentPC = 64'h1000;
-        imm = 64'h1;
-        branchCond = 0;
-        aluZero = 0;
-        uncondBranch = 1;
-        #2; // Wait for delay
-        if (nextPC !== 64'h1004) $display("Test Case 3 Failed: nextPC = %h", nextPC);
+        CurrentPC = 64'h1000;
+        SignExtImm64 = 64'h1;
+        Branch = 0;
+        ALUZero = 0;
+        Uncondbranch = 1;
+        #5; // Wait for delay to ensure processing
+        $display("CurrentPC: %h, SignExtImm64: %h, Branch: %h, ALUZero: %h, Uncondbranch: %h, NextPC: %h", CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch, NextPC);
+        if (NextPC !== 64'h1004) $display("Test Case 3 Failed: NextPC = %h", NextPC);
+        else $display("Test Case 3 Passed: NextPC = %h", NextPC);
         
         // Test Case 4: Conditional branch not taken
-        currentPC = 64'h1000;
-        imm = 64'h2;
-        branchCond = 1;
-        aluZero = 0;
-        uncondBranch = 0;
-        #1; // Wait for delay
-        if (nextPC !== 64'h1004) $display("Test Case 4 Failed: nextPC = %h", nextPC);
-        
+        CurrentPC = 64'h1000;
+        SignExtImm64 = 64'h2;
+        Branch = 1;
+        ALUZero = 0;
+        Uncondbranch = 0;
+        #5; // Wait for delay to ensure processing
+        $display("CurrentPC: %h, SignExtImm64: %h, Branch: %h, ALUZero: %h, Uncondbranch: %h, NextPC: %h", CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranch, NextPC);
+        if (NextPC !== 64'h1004) $display("Test Case 4 Failed: NextPC = %h", NextPC);
+        else $display("Test Case 4 Passed: NextPC = %h", NextPC);
+
         $display("All test cases passed!");
+    end
+    initial begin
+        $dumpfile("NextPClogicTest.vcd");
+        $dumpvars(0, NextPClogicTest);
     end
 endmodule
